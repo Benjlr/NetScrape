@@ -2,7 +2,7 @@
 
 namespace NetScrape.ViewModels
 {
-    public class RequestViewModel
+    public class RequestViewModel : ViewModelBase
     {
         private RelayCommand _sendRequest;
         public ICommand SendRequest => _sendRequest;
@@ -21,7 +21,7 @@ namespace NetScrape.ViewModels
         private void InitialiseData() {
             Host = "www.google.com";
             Scheme = "https";
-            SearchParams = "conveyancing solutions";
+            SearchParams = "conveyancing software";
             NumberofResults = 100;
         }
 

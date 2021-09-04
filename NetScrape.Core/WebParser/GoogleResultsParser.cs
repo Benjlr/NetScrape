@@ -6,7 +6,6 @@ namespace NetScrape.Core.WebParser
 {
     public class GoogleResultsParser : IWebsiteParser
     {
-
         private readonly IParserDetails _details;
 
         public GoogleResultsParser(IParserDetails details) {
@@ -23,7 +22,6 @@ namespace NetScrape.Core.WebParser
                     .Substring(t.Index - _details.Qualifier.Length, _details.Qualifier.Length + 1)
                     .Contains(_details.Qualifier))
                     returnValue.Add(t.Value);
-
 
             return returnValue;
         }
