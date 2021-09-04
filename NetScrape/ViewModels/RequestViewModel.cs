@@ -10,6 +10,7 @@ namespace NetScrape.ViewModels
         public string Host { get; set; }
         public string Scheme { get; set; }
         public string SearchParams { get; set; }
+        public string Desired { get; set; }
         public int NumberofResults { get; set; }
 
 
@@ -22,6 +23,7 @@ namespace NetScrape.ViewModels
             Host = "www.google.com";
             Scheme = "https";
             SearchParams = "conveyancing software";
+            Desired = "smokeball";
             NumberofResults = 100;
         }
 
