@@ -17,7 +17,6 @@ namespace NetScrape
             MyHost = Host.CreateDefaultBuilder()
                 .ConfigureServices(ServiceConfiguration)
                 .Build();
-
         }
 
         private void ServiceConfiguration(IServiceCollection services) =>

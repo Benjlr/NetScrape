@@ -4,7 +4,6 @@ namespace NetScrape.ViewModels
 {
     public class ResultsViewModel : ViewModelBase
     {
-
         public string ResultsArray { get; set; }
 
         public ResultsViewModel() {
@@ -12,18 +11,15 @@ namespace NetScrape.ViewModels
             InitialiseCommands();
         }
 
-        private void InitialiseData() {
+        private void InitialiseData() =>
             App.MyHost.Services.GetRequiredService<NetScrapeService>().SubscribeToChanges(Update);
-        }
 
         private void InitialiseCommands() {
         }
-
 
         private void Update(string newResult) {
             ResultsArray = newResult;
             NotifyPropertyChanged($"ResultsArray");
         }
-
     }
 }

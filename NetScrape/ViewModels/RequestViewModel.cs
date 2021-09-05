@@ -11,7 +11,6 @@ namespace NetScrape.ViewModels
         private IRequestDetails _request;
         private IDesiredResult _stringToFind;
         private NetScrapeService _clientService;
-
         private RelayCommand _sendRequest;
         public ICommand SendRequest => _sendRequest;
 
@@ -44,7 +43,6 @@ namespace NetScrape.ViewModels
                 command => sendRequest(),
                 canExecute => !string.IsNullOrWhiteSpace(Host) && !string.IsNullOrWhiteSpace(Scheme) && NumberofResults > 0);
         }
-
 
         private void sendRequest() {
             _request.Scheme = this.Scheme;

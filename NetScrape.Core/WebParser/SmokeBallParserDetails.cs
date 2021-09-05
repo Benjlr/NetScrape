@@ -10,5 +10,4 @@ namespace NetScrape.Core.WebParser
             Qualifier = "<div class=\"kCrYT\"><a href=\"/url?q=";
         }
     }
-
 }
