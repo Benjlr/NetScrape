@@ -1,9 +1,17 @@
-﻿using System.Windows.Input;
+﻿using Microsoft.Extensions.DependencyInjection;
+using NetScrape.Core.Request;
+using NetScrape.Core.ResultsAnalysis;
+using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace NetScrape.ViewModels
 {
     public class RequestViewModel : ViewModelBase
     {
+        private IRequestDetails _request;
+        private IDesiredResult _stringToFind;
+        private NetScrapeService _clientService;
+
         private RelayCommand _sendRequest;
         public ICommand SendRequest => _sendRequest;
 
@@ -20,6 +28,10 @@ namespace NetScrape.ViewModels
         }
 
         private void InitialiseData() {
+            _request = App.MyHost.Services.GetRequiredService<IRequestDetails>();
+            _stringToFind = App.MyHost.Services.GetRequiredService<IDesiredResult>();
+            _clientService = App.MyHost.Services.GetRequiredService<NetScrapeService>();
+
             Host = "www.google.com";
             Scheme = "https";
             SearchParams = "conveyancing software";
@@ -35,10 +47,17 @@ namespace NetScrape.ViewModels
 
 
         private void sendRequest() {
+            _request.Scheme = this.Scheme;
+            _request.Host = this.Host;
+            _request.Path = "search";
+            _request.Params = new Dictionary<string, string>()
+            {
+                {"num", NumberofResults.ToString()},
+                {"q", SearchParams.Replace(" ", "")}
+            };
 
+            _stringToFind.Result = Desired;
+            _clientService.Update();
         }
-
-
-
     }
 }

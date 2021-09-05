@@ -13,13 +13,13 @@ namespace NetScrape.Core.Tests
 
         [Fact]
         public async Task ShouldLoadWebPage() {
-            var result = new CustomRequest(new RequestParams("https", "www.google.com", "search", new Dictionary<string, string>()));
+            var result = new CustomRequest(new RequestParams(){ Scheme = "https", Host = "www.google.com", Path = "search", Params = new Dictionary<string, string>()});
             Assert.True(!string.IsNullOrWhiteSpace(await result.LoadPage()));
         }
 
         [Fact]
         public void ShouldGetValidSearchResults() {
-            var validList = new GoogleResultsParser(new SmokeBallParserDetails(TestHelper.Regex, TestHelper.Qualifier)).Parse(TestHelper.DummyHtml());
+            var validList = new GoogleResultsParser(new SmokeBallParserDetails()).Parse(TestHelper.DummyHtml());
             Assert.Equal(7, validList.Count);
         }
 
@@ -38,15 +38,15 @@ namespace NetScrape.Core.Tests
 
         [Fact]
         public void ShouldFindStringInResults() {
-            var validList = new GoogleResultsParser(new SmokeBallParserDetails(TestHelper.Regex, TestHelper.Qualifier)).Parse(TestHelper.DummyHtml());
-            Assert.Equal(new List<int>(){2,6}, new ResultFinder(new DesiredResult("smokeball")).GetResults(validList));
+            var validList = new GoogleResultsParser(new SmokeBallParserDetails()).Parse(TestHelper.DummyHtml());
+            Assert.Equal(new List<int>(){2,6}, new ResultFinder(new DesiredResult{ Result = "smokeball"}).GetResults(validList));
         }
 
         [Fact]
         public async Task ShouldGetValidSearchResultsFromGoogle()
         {
-            var result = new CustomRequest(new RequestParams("https", "www.google.com", "search", new Dictionary<string, string>() { { "num", "100" }, { "q", "conveyancing+software" } }));
-            var validList = new GoogleResultsParser(new SmokeBallParserDetails(TestHelper.Regex, TestHelper.Qualifier)).Parse(await result.LoadPage());
+            var result = new CustomRequest(new RequestParams{ Scheme = "https", Host = "www.google.com", Path = "search", Params = new Dictionary<string, string>() { { "num", "100" }, { "q", "conveyancing+software" } }});
+            var validList = new GoogleResultsParser(new SmokeBallParserDetails()).Parse(await result.LoadPage());
 
             Assert.Equal(100, validList.Count);
         }

@@ -4,10 +4,10 @@ namespace NetScrape.Core.Request
 {
     public interface IRequestDetails
     {
-        public string Scheme { get; }
-        public string Host { get; }
-        public string Path { get; }
-        Dictionary<string, string> Params { get; }
+        public string Scheme { get; set; }
+        public string Host { get; set; }
+        public string Path { get; set; }
+        Dictionary<string, string> Params { get; set; }
     }
 
 }

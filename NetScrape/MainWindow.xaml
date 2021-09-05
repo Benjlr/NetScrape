@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NetScrape"
-        xmlns:views="clr-namespace:NetScrape.Views"
+        xmlns:views="clr-namespace:NetScrape.Views" 
+        xmlns:viewmodels="clr-namespace:NetScrape.ViewModels" 
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -12,6 +13,7 @@
             <ColumnDefinition Width="30*"/>
             <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
-        <views:QueryParams></views:QueryParams>
+        <views:QueryParams Grid.Column="0"></views:QueryParams>
+        <views:ResultsView Grid.Column="1"></views:ResultsView>
     </Grid>
 </Window>

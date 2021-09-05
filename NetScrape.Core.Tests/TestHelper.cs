@@ -2,7 +2,6 @@
 {
     public class TestHelper
     {
-        public static readonly string Regex = @"(http|ftp|https)?(://)?([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?";
         public static readonly string Qualifier = "<div class=\"kCrYT\"><a href=\"/url?q=";
         public static string DummyHtml() {
             return

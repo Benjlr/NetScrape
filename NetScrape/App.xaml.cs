@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.Hosting;
-using System.Windows;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NetScrape.Core.Request;
 using NetScrape.Core.ResultsAnalysis;
+using System.Windows;
+using NetScrape.Core.WebParser;
 
 namespace NetScrape
 {
@@ -10,32 +11,37 @@ namespace NetScrape
     public partial class App : Application
     {
 
-        private readonly IHost _host;
+        public static IHost MyHost;
 
         public App() {
-            _host = Host.CreateDefaultBuilder()
+            MyHost = Host.CreateDefaultBuilder()
                 .ConfigureServices(ServiceConfiguration)
                 .Build();
 
         }
 
-        private void ServiceConfiguration(IServiceCollection services) {
-            //services
-            //    .AddTransient<ICustomRequest,CustomRequest>()
-            //    .AddSingleton<IRequestDetails,RequestParams>()
-            //    .AddTransient<IResultFinder,ResultFinder>()
-            //    .AddTransient<>()
-        }
+        private void ServiceConfiguration(IServiceCollection services) =>
+            services
+                .AddSingleton<MainWindow>()
+                .AddSingleton<IRequestDetails, RequestParams>()
+                .AddSingleton<IDesiredResult, DesiredResult>()
+                .AddSingleton<IParserDetails, SmokeBallParserDetails>()
+                .AddTransient<IWebsiteParser, GoogleResultsParser>()
+                .AddTransient<IResultFinder, ResultFinder>()
+                .AddTransient<ICustomRequest, CustomRequest>()
+                .AddSingleton<NetScrapeService>();
+
 
 
         protected override async void OnStartup(StartupEventArgs e) {
-            await _host.StartAsync();
+            await MyHost.StartAsync();
+            MyHost.Services.GetRequiredService<MainWindow>().Show();
             base.OnStartup(e);
         }
 
         protected override async void OnExit(ExitEventArgs e) {
-            using (_host) {
-                await _host.StopAsync();
+            using (MyHost) {
+                await MyHost.StopAsync();
                 base.OnExit(e);
             }
         }
