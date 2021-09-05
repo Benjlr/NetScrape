@@ -34,7 +34,7 @@ namespace NetScrape.ViewModels
             Host = "www.google.com";
             Scheme = "https";
             SearchParams = "conveyancing software";
-            Desired = "smokeball";
+            Desired = "smokeball.com";
             NumberofResults = 100;
         }
 
