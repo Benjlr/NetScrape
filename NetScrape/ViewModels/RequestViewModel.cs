@@ -51,7 +51,7 @@ namespace NetScrape.ViewModels
             _request.Params = new Dictionary<string, string>()
             {
                 {"num", NumberofResults.ToString()},
-                {"q", SearchParams.Replace(" ", "")}
+                {"q", SearchParams.Replace(" ", "+")}
             };
 
             _stringToFind.Result = Desired;
