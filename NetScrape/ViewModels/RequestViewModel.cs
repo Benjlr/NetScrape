@@ -15,7 +15,6 @@ namespace NetScrape.ViewModels
         public ICommand SendRequest => _sendRequest;
 
         public string Host { get; set; }
-        public string Scheme { get; set; }
         public string SearchParams { get; set; }
         public string Desired { get; set; }
         public int NumberofResults { get; set; }
@@ -32,7 +31,6 @@ namespace NetScrape.ViewModels
             _clientService = App.MyHost.Services.GetRequiredService<NetScrapeService>();
 
             Host = "www.google.com";
-            Scheme = "https";
             SearchParams = "conveyancing software";
             Desired = "smokeball.com";
             NumberofResults = 100;
@@ -41,11 +39,11 @@ namespace NetScrape.ViewModels
         private void InitialiseCommands() {
             _sendRequest = new RelayCommand(
                 command => sendRequest(),
-                canExecute => !string.IsNullOrWhiteSpace(Host) && !string.IsNullOrWhiteSpace(Scheme) && NumberofResults > 0);
+                canExecute => !string.IsNullOrWhiteSpace(Host) && NumberofResults > 0);
         }
 
         private void sendRequest() {
-            _request.Scheme = this.Scheme;
+            _request.Scheme = "https";
             _request.Host = this.Host;
             _request.Path = "search";
             _request.Params = new Dictionary<string, string>()

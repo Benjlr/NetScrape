@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:NetScrape.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="250" d:DesignWidth="800">
     <UserControl.DataContext>
         <viewModels:RequestViewModel></viewModels:RequestViewModel>
     </UserControl.DataContext>
@@ -20,20 +20,17 @@
             <RowDefinition Height="25*"></RowDefinition>
             <RowDefinition Height="25*"></RowDefinition>
             <RowDefinition Height="25*"></RowDefinition>
-            <RowDefinition Height="25*"></RowDefinition>
-            </Grid.RowDefinitions>
+        </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  >Host</Label>
-        <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">Scheme</Label>
-        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">Search String</Label>
-        <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center">Look For</Label>
-        <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center">Number of Results</Label>
+        <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">Search String</Label>
+        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">Look For</Label>
+        <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center">Number of Results</Label>
 
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Host}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextWrapping="Wrap"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Scheme}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  TextWrapping="Wrap"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SearchParams}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  TextWrapping="Wrap"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Desired}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  TextWrapping="Wrap"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding NumberofResults}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  TextWrapping="Wrap"></TextBox>
-        <Button Grid.Row="5" Grid.ColumnSpan="2" Command="{Binding SendRequest}" Width="150" Margin="15 5 15 5">Send Request</Button>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SearchParams}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  TextWrapping="Wrap"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Desired}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  TextWrapping="Wrap"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding NumberofResults}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  TextWrapping="Wrap"></TextBox>
+        <Button Grid.Row="5" Grid.ColumnSpan="4" Command="{Binding SendRequest}" Width="150" Margin="15 5 15 5">Send Request</Button>
 
 </Grid>
 </UserControl>
